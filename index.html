@@ -17,43 +17,85 @@
     <p>Alle Daten, die du eingibst werden nur lokal auf deinem Gerät gespeichert und verarbeitet.</p>
 
     <form id="form">
+        <h3>Persönliche Daten</h3>
         <div class="form-side">
             <label for="fname">Vorname</label>
-            <input type="text" id="fname" autocomplete="given-name" placeholder="Vorname">
+            <input class="regular" type="text" id="fname" autocomplete="given-name" placeholder="Vorname">
         </div>
         <div class="form-side">
             <label for="lname">Nachname</label>
-            <input type="text" id="lname" autocomplete="family-name" placeholder="Nachname">
+            <input class="regular" type="text" id="lname" autocomplete="family-name" placeholder="Nachname">
         </div>
         <div>
             <label for="email">E-Mail</label>
-            <input type="email" id="email" autocomplete="email" placeholder="E-Mail">
+            <input class="regular" type="email" id="email" autocomplete="email" placeholder="E-Mail">
         </div>
         <div>
             <label for="address">Straße und Hausnummer</label>
-            <input type="text" id="address" autocomplete="street-address" placeholder="Adresse">
+            <input class="regular" type="text" id="address" autocomplete="street-address" placeholder="Adresse">
         </div>
         <div class="form-side">
             <label for="plz">Postleitzahl</label>
-            <input type="text" id="plz" autocomplete="postal-code" placeholder="PLZ">
+            <input class="regular" type="text" id="plz" autocomplete="postal-code" placeholder="PLZ">
         </div>
         <div class="form-side">
             <label for="city">Stadt</label>
-            <input type="text" id="city" autocomplete="address-level2" placeholder="Stadt">
+            <input class="regular" type="text" id="city" autocomplete="address-level2" placeholder="Stadt">
         </div>
-        <div/>
+        <div></div>
         <div class="form-side">
             <label for="iban">IBAN</label>
-            <input type="text" id="iban" placeholder="IBAN">
+            <input class="regular" type="text" id="iban" placeholder="IBAN">
         </div>
         <div class="form-side">
             <span id="validity"></span>
         </div>
+
+        <h3>Auslagen</h3>
+        <table>
+            <tr>
+                <td class="date">Belegdatum</td>
+                <td class="name">Beschreibung</td>
+                <td class="money">Betrag (€)</td>
+            </tr>
+            <tr><td><input type="date" class="date" id="date0"></td><td class="expand"><input class="name" id="name0"></td><td><input class="money" id="money0"></td></tr>
+            <tr><td><input type="date" class="date" id="date1"></td><td class="expand"><input class="name" id="name1"></td><td><input class="money" id="money1"></td></tr>
+            <tr><td><input type="date" class="date" id="date2"></td><td class="expand"><input class="name" id="name2"></td><td><input class="money" id="money2"></td></tr>
+            <tr><td><input type="date" class="date" id="date3"></td><td class="expand"><input class="name" id="name3"></td><td><input class="money" id="money3"></td></tr>
+            <tr><td><input type="date" class="date" id="date4"></td><td class="expand"><input class="name" id="name4"></td><td><input class="money" id="money4"></td></tr>
+            <tr><td><input type="date" class="date" id="date5"></td><td class="expand"><input class="name" id="name5"></td><td><input class="money" id="money5"></td></tr>
+            <tr><td><input type="date" class="date" id="date6"></td><td class="expand"><input class="name" id="name6"></td><td><input class="money" id="money6"></td></tr>
+            <tr><td><input type="date" class="date" id="date7"></td><td class="expand"><input class="name" id="name7"></td><td><input class="money" id="money7"></td></tr>
+        </table>
+
+
+        <h3>Unterschrift</h3>
+        <div class="form-side">
+            <label for="iban">mit Maus/Finger/Stift</label>
+        </div>
+        <div class="form-side">
+            <button type="button" id="clear">Löschen</button>
+        </div>
         <div>
+            <canvas id="signature" width="300px" height="100px"></canvas>
+        </div>
+        <div></div>
+        <div class="form-side">
+            <input type="text" id="city-sign" autocomplete="address-level2" placeholder="Stadt">
+        </div>
+        <div class="form-side">, den</div>
+        <div class="form-side" id="date"></div>
+        <div></div>
+        <div class="form-side">
             <input type="submit" value="Antrag als PDF herunterladen">
-            Schicke den Antrag per Mail oder Signal an den Kassenwart.
+        </div>
+        <div class="form-side">
+            <span id="form-validity"></span>
         </div>
     </form>
+    <p>
+            Schicke den Antrag per Mail oder Signal an den Kassenwart.
+    </p>
 
     <script type="text/javascript" src="script.js"></script>
 </body>
