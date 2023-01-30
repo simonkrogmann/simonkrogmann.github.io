@@ -259,10 +259,11 @@ function updateTotal()
 async function pdfCreate()
 {
     // const pdfDoc = await PDFLib.PDFDocument.create();
-    const existingPdfBytes = await fetch("antrag.pdf").then(res => res.arrayBuffer())
-    const pdfDoc = await PDFDocument.load(existingPdfBytes)
-    const pages = pdfDoc.getPages()
-    const page = pages[0]
+    const existingPDF = await fetch("https://simonkrogmann.github.io/antrag.b64").then(res => res.text());
+    console.log(atob(existingPDF));
+    const pdfDoc = await PDFLib.PDFDocument.load(existingPDF);
+    const pages = pdfDoc.getPages();
+    const page = pages[0];
     page.moveTo(110, 200);
     page.drawText('Hello World!');
     const pdfBytes = await pdfDoc.save();
