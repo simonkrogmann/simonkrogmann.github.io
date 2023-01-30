@@ -15,6 +15,7 @@
 
     <h1>Auslagenerstattung</h1>
     <p>Alle Daten, die du eingibst werden nur lokal auf deinem Gerät gespeichert und verarbeitet.</p>
+    <p>Falls es Fehler gibt, bitte an den Kassenwart melden.</p>
 
     <form id="form">
         <h3>Persönliche Daten</h3>
@@ -88,16 +89,17 @@
         <div class="form-side" id="date"></div>
         <div></div>
         <div class="form-side">
-            <input type="submit" value="Antrag als PDF herunterladen">
+            <button id="submit" type="button">Antrag als PDF herunterladen</button>
         </div>
         <div class="form-side">
             <span id="form-validity"></span>
         </div>
     </form>
     <p>
-            Schicke den Antrag per Mail oder Signal an den Kassenwart.
+        Überprüfe den Antrag und schicke ihn dann per Mail oder Signal an den Kassenwart.
     </p>
 
+    <script src="https://unpkg.com/pdf-lib"></script>
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

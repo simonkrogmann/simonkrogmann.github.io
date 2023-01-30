@@ -128,14 +128,6 @@ function addStorageWriters(){
     }
 }
 
-function antragSubmit()
-{
-    const isValid = validate();
-    console.log(isValid);
-    document.getElementById('form-validity').innerHTML = isValid ? "" : "Fehler gefunden";
-    return false;
-}
-
 function showIBANState(state)
 {
     var validity = document.getElementById("validity");
@@ -247,6 +239,11 @@ function addCanvasStuff() {
 
 }
 
+function formatMoney(value)
+{
+    return Number(value).toFixed(2).toString().replace(".", ",");
+}
+
 function updateTotal()
 {
     var money = document.getElementsByClassName('money');
@@ -256,11 +253,37 @@ function updateTotal()
         var val = el.value.replace(",", ".");
         total += Number(val);
     }
-    document.getElementById("total").innerHTML = Number(total).toFixed(2).toString().replace(".", ",");
+    document.getElementById("total").innerHTML = formatMoney(total);
+}
+
+async function pdfCreate()
+{
+    const pdfDoc = await PDFLib.PDFDocument.create();
+    const page = pdfDoc.addPage([350, 400]);
+    page.moveTo(110, 200);
+    page.drawText('Hello World!');
+    const pdfBytes = await pdfDoc.save();
+    var blob = new Blob([pdfBytes], {type: "application/pdf"});
+    var link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = "Antrag-Auslagenerstattung.pdf";
+    link.click();
+}
+
+function antragSubmit()
+{
+    const isValid = validate();
+    console.log(isValid);
+    document.getElementById('form-validity').innerHTML = isValid ? "" : "Fehler gefunden";
+    if (isValid)
+    {
+        pdfCreate();
+    }
+    return false;
 }
 
 function init(){
-    document.getElementById("form").onsubmit = antragSubmit;
+    document.getElementById("submit").addEventListener("click", antragSubmit);
     var iban = document.getElementById('iban');
     iban.addEventListener("input", function (e) {
         var valid = validateIBAN(iban.value);
