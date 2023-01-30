@@ -247,6 +247,18 @@ function addCanvasStuff() {
 
 }
 
+function updateTotal()
+{
+    var money = document.getElementsByClassName('money');
+    var total = 0;
+    for (const el of money) {
+        if (!el.value) continue;
+        var val = el.value.replace(",", ".");
+        total += Number(val);
+    }
+    document.getElementById("total").innerHTML = Number(total).toFixed(2).toString().replace(".", ",");
+}
+
 function init(){
     document.getElementById("form").onsubmit = antragSubmit;
     var iban = document.getElementById('iban');
@@ -254,10 +266,15 @@ function init(){
         var valid = validateIBAN(iban.value);
         showIBANState(valid);
     });
+    var money = document.getElementsByClassName('money');
+    for (const el of money) {
+        el.addEventListener("input", updateTotal);
+    }
     addStorageWriters();
     document.getElementById("date").innerHTML = formatDate();
 
     addCanvasStuff();
+    updateTotal();
 }
 
 window.onload = init;

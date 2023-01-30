@@ -67,6 +67,11 @@ input.name {
 input.money {
     width: 70px;
     box-sizing: border-box;
+    text-align:right;
+}
+
+td#total {
+    text-align:right;
 }
 
 table {
