@@ -261,7 +261,9 @@ async function pdfCreate()
     // const pdfDoc = await PDFLib.PDFDocument.create();
     const existingPDF = await fetch("https://simonkrogmann.github.io/antrag.b64").then(res => res.text());
     console.log(atob(existingPDF));
-    const pdfDoc = await PDFLib.PDFDocument.load(existingPDF);
+    // var options = PDFLib.LoadOptions;
+    // options.throwOnInvalidObject = true;
+    const pdfDoc = await PDFLib.PDFDocument.load(existingPDF, {throwOnInvalidObject: false});
     const pages = pdfDoc.getPages();
     const page = pages[0];
     page.moveTo(110, 200);
