@@ -68,14 +68,14 @@ function validate(){
     var lastFilled = 0;
     for (var i = 0; i < 8; ++i)
     {
-        if (document.getElementById('name' + i).value || document.getElementById('money' + i).value)
+        if (document.getElementById('desc' + i).value || document.getElementById('money' + i).value)
         {
             lastFilled = i;
         }
     }
     for (var i = 0; i < 8; ++i)
     {
-        var name = document.getElementById('name' + i);
+        var name = document.getElementById('desc' + i);
         if (!name.value && i <= lastFilled)
         {
             name.style.borderColor = "red";
@@ -295,10 +295,11 @@ function writeData(page, image)
 
     for (var i = 0; i < 8; ++i)
     {
+        if (!get('desc' + i)) break;
         page.moveTo(57, 842-260-34.7*i);
         page.drawText(formatDate(new Date(get('date' + i))));
         page.moveTo(156, 842-260-34.7*i);
-        page.drawText(get('name' + i));
+        page.drawText(get('desc' + i));
         page.moveTo(455, 842-260-34.7*i);
         page.drawText(formatMoney(get('money' + i)));
     }
