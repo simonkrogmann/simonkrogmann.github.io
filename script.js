@@ -135,10 +135,8 @@ function showIBANState(state)
     validity.style.color = state ? "green" : "red";
 }
 
-function formatDate()
+function formatDate(date)
 {
-    const date = new Date();
-
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
@@ -256,18 +254,65 @@ function updateTotal()
     document.getElementById("total").innerHTML = formatMoney(total);
 }
 
+function get(id)
+{
+    return document.getElementById(id).value;
+}
+
+function formatIBAN(iban)
+{
+    var stripped = iban.replace(/\s+/g, '');
+    var result = "";
+    for (var i = 0; i < iban.length; i += 4)
+    {
+        result += stripped.substring(i,i+4) + " ";
+    }
+    return result;
+}
+
+function writeData(page, normal, monospace)
+{
+
+ // 'width x height = 595 x 842 pt'.
+
+    page.setFontSize(14);
+    page.moveTo(57, 842-136);
+    page.drawText(get('lname') + ", " + get('fname'));
+    page.moveTo(57, 842-173);
+    page.drawText(get('email'));
+    page.moveTo(53, 842-211);
+    page.setFontSize(16.7);
+    page.drawText(formatIBAN(get('iban')));
+    page.setFontSize(14);
+
+
+    page.moveTo(298, 842-136);
+    page.drawText(get('address'));
+    page.moveTo(298, 842-173);
+    page.drawText(get('plz') + " " + get('city'));
+
+
+    for (var i = 0; i < 8; ++i)
+    {
+        page.moveTo(57, 842-260-34.7*i);
+        page.drawText(formatDate(new Date(get('date' + i))));
+        page.moveTo(156, 842-260-34.7*i);
+        page.drawText(get('name' + i));
+        page.moveTo(455, 842-260-34.7*i);
+        page.drawText(formatMoney(get('money' + i)));
+    }
+}
+
+
+
 async function pdfCreate()
 {
-    // const pdfDoc = await PDFLib.PDFDocument.create();
     const existingPDF = await fetch("https://simonkrogmann.github.io/antrag.b64").then(res => res.text());
-    console.log(atob(existingPDF));
-    // var options = PDFLib.LoadOptions;
-    // options.throwOnInvalidObject = true;
-    const pdfDoc = await PDFLib.PDFDocument.load(existingPDF, {throwOnInvalidObject: false});
+    const pdfDoc = await PDFLib.PDFDocument.load(existingPDF);
+
     const pages = pdfDoc.getPages();
     const page = pages[0];
-    page.moveTo(110, 200);
-    page.drawText('Hello World!');
+    writeData(page);
     const pdfBytes = await pdfDoc.save();
     var blob = new Blob([pdfBytes], {type: "application/pdf"});
     var link = document.createElement('a');
@@ -300,7 +345,7 @@ function init(){
         el.addEventListener("input", updateTotal);
     }
     addStorageWriters();
-    document.getElementById("date").innerHTML = formatDate();
+    document.getElementById("date").innerHTML = formatDate(new Date());
 
     addCanvasStuff();
     updateTotal();
