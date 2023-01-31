@@ -252,6 +252,7 @@ function updateTotal()
         total += Number(val);
     }
     document.getElementById("total").innerHTML = formatMoney(total);
+    return formatMoney(total);
 }
 
 function get(id)
@@ -270,7 +271,7 @@ function formatIBAN(iban)
     return result;
 }
 
-function writeData(page, normal, monospace)
+function writeData(page, image)
 {
 
  // 'width x height = 595 x 842 pt'.
@@ -301,6 +302,21 @@ function writeData(page, normal, monospace)
         page.moveTo(455, 842-260-34.7*i);
         page.drawText(formatMoney(get('money' + i)));
     }
+
+    page.moveTo(57, 842-559);
+    page.setFontSize(10);
+    page.drawText(get('city-sign') + ', ' + formatDate(new Date()));
+    page.setFontSize(14);
+    page.moveTo(156, 842-559);
+    page.drawImage(image, {
+        x: 156,
+        y: 842-559,
+        width: image.width / 3,
+        height: image.height / 3,
+    });
+
+    page.moveTo(455, 842-559);
+    page.drawText(updateTotal());
 }
 
 
@@ -309,10 +325,14 @@ async function pdfCreate()
 {
     const existingPDF = await fetch("https://simonkrogmann.github.io/antrag.b64").then(res => res.text());
     const pdfDoc = await PDFLib.PDFDocument.load(existingPDF);
-
     const pages = pdfDoc.getPages();
     const page = pages[0];
-    writeData(page);
+
+    const url = document.getElementById('signature').toDataURL("image/png");
+    const bytes = await fetch(url).then((res) => res.arrayBuffer())
+    const image = await pdfDoc.embedPng(bytes);
+
+    writeData(page, image);
     const pdfBytes = await pdfDoc.save();
     var blob = new Blob([pdfBytes], {type: "application/pdf"});
     var link = document.createElement('a');
