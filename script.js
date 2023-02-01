@@ -117,7 +117,7 @@ function dateUseful(value)
     return daysInPast > -100 && daysInPast < 2000;
 }
 
-function addStorageWriters(){
+function addStorageWriters() {
     var inputs = document.getElementsByTagName('input');
     for (const el of inputs) {
         if (el.type == "submit") continue;
@@ -147,50 +147,37 @@ function formatDate(date)
 }
 
 function addCanvasStuff() {
-    window.requestAnimFrame = (function(callback) {
-        return window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.oRequestAnimationFrame ||
-        window.msRequestAnimationFrame;
-    })();
-
     var canvas = document.getElementById("signature");
     var ctx = canvas.getContext("2d");
     ctx.strokeStyle = "#0000b9";
     ctx.lineWidth = 2;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-
-
-    var drawing = false;
     var points = [[]];
 
     canvas.addEventListener("mousedown", function(e) {
         if (e.which != 1) return;
-        drawing = true;
         points[points.length - 1].push(getMousePos(canvas, e));
     }, false);
 
     canvas.addEventListener("mouseup", function(e) {
-        drawing = false;
         if (points[points.length - 1] != 0)
         {
+            renderCanvas();
             points.push([]);
         }
     }, false);
 
     canvas.addEventListener("mousemove", function(e) {
         if (e.which != 1) {
-            drawing = false;
-            if (points[points.length - 1] != 0)
-            {
+            if (points[points.length - 1] != 0) {
+                renderCanvas();
                 points.push([]);
             }
         }
-        else
-        {
+        else {
             points[points.length - 1].push(getMousePos(canvas, e));
+            renderCanvas();
         }
     }, false);
 
@@ -226,46 +213,35 @@ function addCanvasStuff() {
     }
 
     function renderCanvas() {
-        if (drawing) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (const curve of points)
-            {
-                ctx.beginPath();
-                ctx.moveTo(curve[0].x, curve[0].y);
-                if (curve.length < 3)
-                {
-                    for (var i = 0; i < curve.length; i++) {
-                        ctx.lineTo(curve[i].x, curve[i].y);
-                    }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (const curve of points) {
+            ctx.beginPath();
+            ctx.moveTo(curve[0].x, curve[0].y);
+            if (curve.length < 3) {
+                for (var i = 0; i < curve.length; i++) {
+                    ctx.lineTo(curve[i].x, curve[i].y);
                 }
-                else
-                {
-                    for (var i = 1; i < curve.length - 2; i++) {
-                        var c = (curve[i].x + curve[i + 1].x) / 2;
-                        var d = (curve[i].y + curve[i + 1].y) / 2;
-                        ctx.quadraticCurveTo(curve[i].x, curve[i].y, c, d);
-                    }
-                    ctx.quadraticCurveTo(
-                        curve[i].x,
-                        curve[i].y,
-                        curve[i + 1].x,
-                        curve[i + 1].y
-                    );
-                }
-                ctx.stroke();
             }
+            else {
+                for (var i = 1; i < curve.length - 2; i++) {
+                    var c = (curve[i].x + curve[i + 1].x) / 2;
+                    var d = (curve[i].y + curve[i + 1].y) / 2;
+                    ctx.quadraticCurveTo(curve[i].x, curve[i].y, c, d);
+                }
+                ctx.quadraticCurveTo(
+                    curve[i].x,
+                    curve[i].y,
+                    curve[i + 1].x,
+                    curve[i + 1].y
+                );
+            }
+            ctx.stroke();
         }
     }
-
-    (function drawLoop() {
-        requestAnimFrame(drawLoop);
-        renderCanvas();
-    })();
 
     var clear = document.getElementById("clear");
     clear.addEventListener("click", function(e) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.beginPath();
         points = [];
     }, false);
 
