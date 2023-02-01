@@ -159,28 +159,39 @@ function addCanvasStuff() {
     var ctx = canvas.getContext("2d");
     ctx.strokeStyle = "#0000b9";
     ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
 
 
     var drawing = false;
-    var mousePos = {
-        x: 0,
-        y: 0
-    };
-    var lastPos = mousePos;
+    var points = [[]];
 
     canvas.addEventListener("mousedown", function(e) {
         if (e.which != 1) return;
         drawing = true;
-        lastPos = getMousePos(canvas, e);
+        points[points.length - 1].push(getMousePos(canvas, e));
     }, false);
 
     canvas.addEventListener("mouseup", function(e) {
         drawing = false;
+        if (points[points.length - 1] != 0)
+        {
+            points.push([]);
+        }
     }, false);
 
     canvas.addEventListener("mousemove", function(e) {
-        if (e.which != 1) drawing = false;
-        mousePos = getMousePos(canvas, e);
+        if (e.which != 1) {
+            drawing = false;
+            if (points[points.length - 1] != 0)
+            {
+                points.push([]);
+            }
+        }
+        else
+        {
+            points[points.length - 1].push(getMousePos(canvas, e));
+        }
     }, false);
 
     canvas.addEventListener("touchmove", function(e) {
@@ -194,7 +205,6 @@ function addCanvasStuff() {
 
     canvas.addEventListener("touchstart", function(e) {
         var touch = e.touches[0];
-        mousePos = getMousePos(canvas, touch);
         var me = new MouseEvent("mousedown", {
             clientX: touch.clientX,
             clientY: touch.clientY
@@ -217,10 +227,33 @@ function addCanvasStuff() {
 
     function renderCanvas() {
         if (drawing) {
-            ctx.moveTo(lastPos.x, lastPos.y);
-            ctx.lineTo(mousePos.x, mousePos.y);
-            ctx.stroke();
-            lastPos = mousePos;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const curve of points)
+            {
+                ctx.beginPath();
+                ctx.moveTo(curve[0].x, curve[0].y);
+                if (curve.length < 3)
+                {
+                    for (var i = 0; i < curve.length; i++) {
+                        ctx.lineTo(curve[i].x, curve[i].y);
+                    }
+                }
+                else
+                {
+                    for (var i = 1; i < curve.length - 2; i++) {
+                        var c = (curve[i].x + curve[i + 1].x) / 2;
+                        var d = (curve[i].y + curve[i + 1].y) / 2;
+                        ctx.quadraticCurveTo(curve[i].x, curve[i].y, c, d);
+                    }
+                    ctx.quadraticCurveTo(
+                        curve[i].x,
+                        curve[i].y,
+                        curve[i + 1].x,
+                        curve[i + 1].y
+                    );
+                }
+                ctx.stroke();
+            }
         }
     }
 
@@ -233,6 +266,7 @@ function addCanvasStuff() {
     clear.addEventListener("click", function(e) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.beginPath();
+        points = [];
     }, false);
 
 }
@@ -276,7 +310,7 @@ function writeData(page, image)
 
  // 'width x height = 595 x 842 pt'.
 
-    page.setFontSize(14);
+    page.setFontSize(12);
     page.moveTo(57, 842-136);
     page.drawText(get('lname') + ", " + get('fname'));
     page.moveTo(57, 842-173);
@@ -284,7 +318,7 @@ function writeData(page, image)
     page.moveTo(53, 842-211);
     page.setFontSize(16.7);
     page.drawText(formatIBAN(get('iban')));
-    page.setFontSize(14);
+    page.setFontSize(12);
 
 
     page.moveTo(298, 842-136);
@@ -301,17 +335,18 @@ function writeData(page, image)
         page.moveTo(156, 842-260-34.7*i);
         page.drawText(get('desc' + i));
         page.moveTo(455, 842-260-34.7*i);
-        page.drawText(formatMoney(get('money' + i)));
+
+        var val = get('money' + i).replace(",", ".");
+        page.drawText(formatMoney(val));
     }
 
     page.moveTo(57, 842-559);
-    page.setFontSize(10);
+    page.setFontSize(9);
     page.drawText(get('city-sign') + ', ' + formatDate(new Date()));
-    page.setFontSize(14);
-    page.moveTo(156, 842-559);
+    page.setFontSize(12);
     page.drawImage(image, {
-        x: 156,
-        y: 842-559,
+        x: 220,
+        y: 842-564,
         width: image.width / 3,
         height: image.height / 3,
     });
@@ -345,7 +380,6 @@ async function pdfCreate()
 function antragSubmit()
 {
     const isValid = validate();
-    console.log(isValid);
     document.getElementById('form-validity').innerHTML = isValid ? "" : "Fehler gefunden";
     if (isValid)
     {
