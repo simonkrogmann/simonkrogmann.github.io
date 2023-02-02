@@ -267,7 +267,7 @@ function updateTotal()
 
 function get(id)
 {
-    return document.getElementById(id).value;
+    return document.getElementById(id).value.trim();
 }
 
 function formatIBAN(iban)
