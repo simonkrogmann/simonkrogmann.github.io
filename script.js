@@ -149,7 +149,7 @@ function formatDate(date)
 function addCanvasStuff() {
     var canvas = document.getElementById("signature");
     var ctx = canvas.getContext("2d");
-    ctx.strokeStyle = "#0000b9";
+    ctx.strokeStyle = "#5050ff";
     ctx.lineWidth = 2;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';

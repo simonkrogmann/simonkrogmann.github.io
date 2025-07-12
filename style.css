@@ -1,10 +1,17 @@
 body {
+    background: #fff;
+    color: #333;
     margin:0px auto;
     max-width: 700px;
     line-height: 1.2;
     font-size: 18px;
-    color: #444;
     padding: 0 10px;
+    font-family: sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
 }
 
 h1,h2,h3 {
@@ -31,6 +38,11 @@ span#dateplace {
 
 input {
     margin-bottom: 10px;
+    border: 1px solid;
+    border-color: #333;
+    height: 25px;
+    font-size: 16px;
+
 }
 
 div.form-side {
@@ -48,6 +60,8 @@ canvas#signature {
 td {
     width:0.1%;
     white-space: nowrap;
+    background-clip: padding-box;
+    border: 0px solid transparent;
 }
 
 td.expand {
@@ -55,7 +69,7 @@ td.expand {
 }
 
 input.date {
-    width: 115px;
+/*    width: 115px;*/
     box-sizing: border-box;
 }
 
@@ -65,7 +79,7 @@ input.desc {
 }
 
 input.money {
-    width: 70px;
+    width: 100%;
     box-sizing: border-box;
     text-align:right;
 }
@@ -76,9 +90,32 @@ td#total {
 
 table {
     width: 100%;
-    border-spacing:0;
+    border-collapse: collapse;
+}
+
+tr > td + td {
+  border-left-width: 7px;
 }
 
 span#form-validity {
     color: red;
 }
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #333;
+        color: #fff;
+    }
+
+    input {
+        background: #333;
+        border: 1px solid;
+        color: #fff;
+
+    }
+
+    canvas#signature{
+        outline: 1px #fff solid;
+    }
+}
+
