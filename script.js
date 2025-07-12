@@ -156,7 +156,7 @@ function addCanvasStuff() {
     var points = [[]];
 
     canvas.addEventListener("mousedown", function(e) {
-        if (e.which != 1) return;
+        if (e.buttons != 1) return;
         points[points.length - 1].push(getMousePos(canvas, e));
     }, false);
 
@@ -169,7 +169,7 @@ function addCanvasStuff() {
     }, false);
 
     canvas.addEventListener("mousemove", function(e) {
-        if (e.which != 1) {
+        if (e.buttons != 1) {
             if (points[points.length - 1] != 0) {
                 renderCanvas();
                 points.push([]);
