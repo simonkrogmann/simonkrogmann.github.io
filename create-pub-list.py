@@ -75,7 +75,7 @@ def create_html(bib_database):
 
         print(f"""\
     <div class="paper">
-        <p class="title">{title}</a></p>
+        <p class="title">{title}</p>
         <p class="authors">{entry["authors"]}</p>
         <p class="conf">{venue}</p>
         {links}

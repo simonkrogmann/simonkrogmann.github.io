@@ -126,7 +126,6 @@ main {
         align-items: center;
     }
     div#name, div#desc {
-        align: center;
         text-align: center;
     }
     nav {
