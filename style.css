@@ -36,7 +36,7 @@
 /*           general                */
 
 h1,h2,h3 {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 body {
@@ -164,21 +164,21 @@ div.email > span:nth-child(3) {
 
 /*           publications                */
 
-.paper.title {
+div.paper > p.title {
     font-weight: bold;
     font-size: 18px;
 }
 
-.paper.authors {
+div.paper > p.authors {
     font-size: 14px;
 }
 
-.paper.conf {
+div.paper > p.conf {
     color: var(--subtle-color);
     font-size: 14px;
 }
 
-div.paper{
+div.paper, p#pubdesc {
     margin-bottom: 30px;
 }
 
@@ -191,10 +191,10 @@ div.paper > a {
 }
 
 div.paper > a + a {
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
-p.paper {
+div.paper > p {
     line-height: 1;
     margin-bottom: 5px;
     margin-top: 5px;
