@@ -1,8 +1,8 @@
 [id]::before {
   content: '';
   display: block;
-  height:      120px;
-  margin-top: -120px;
+  height:      130px;
+  margin-top: -130px;
   visibility: hidden;
 }
 
@@ -81,7 +81,6 @@ header {
 
 div#header {
     max-width: 700px;
-    padding: 0 10px;
     margin:0px auto;
 }
 
@@ -112,24 +111,46 @@ nav {
 }
 
 main {
-    margin-top: 120px;
+    margin-top: 130px;
     margin-bottom: 70px;
 }
 
 @media screen and (max-width: 620px) {
-    /*header {
+    div#header {
+        width: 100%;
+    }
+    div#tag {
+        width: 100%;
+        float: none;
+        justify-content: center;
         align-items: center;
-    }*/
+    }
+    div#name, div#desc {
+        align: center;
+        text-align: center;
+    }
     nav {
+        margin-left: 0px;
+        margin-right: 0px;
         margin-top: 0px;
         width: 100%;
         float: none;
+        display: flex; justify-content: center;
+    }
+    nav > a {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    nav > a + a {
+        margin-left: 20px;
     }
 
     main {
         margin-top: 130px;
+        margin-bottom: 20px;
     }
 }
+
 
 
 
@@ -144,7 +165,10 @@ div#me {
 
 div#box-right {
     margin-left: 30px;
-/*    margin-top: 10px;*/
+}
+
+p#long-desc {
+    margin-top: 0px;
 }
 
 img#pic {
@@ -163,7 +187,11 @@ div.email {
 
 
 a.logo + a.logo{
-    margin: 15px;
+    margin-left: 18px;
+}
+
+a.logo + a.logo + a.logo{
+    margin-left: 21px;
 }
 
 
