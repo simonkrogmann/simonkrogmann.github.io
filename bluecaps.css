@@ -1,0 +1,85 @@
+input.regular {
+    width: 200px;
+}
+
+input.regular, label, button#clear {
+    display: block;
+    white-space: nowrap;
+}
+
+input#city-sign {
+    display: inline;
+    width: 150px;
+}
+
+span#dateplace {
+    white-space: nowrap;
+}
+
+input {
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-color: var(--main-color);
+    height: 25px;
+    font-size: 16px;
+    background: var(--bg-color);
+    color: var(--main-color);
+
+}
+
+div.form-side {
+    display: inline-block;
+}
+
+canvas#signature {
+    outline: 1px var(--main-color) solid;
+    cursor: crosshair;
+    width: 300px;
+    height: 100px;
+    touch-action: none;
+}
+
+td {
+    width:0.1%;
+    white-space: nowrap;
+    background-clip: padding-box;
+    border: 0px solid transparent;
+}
+
+td.expand {
+    width: 100%;
+}
+
+input.date {
+/*    width: 115px;*/
+    box-sizing: border-box;
+}
+
+input.desc {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input.money {
+    width: 100%;
+    box-sizing: border-box;
+    text-align:right;
+}
+
+td#total {
+    text-align:right;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr > td + td {
+  border-left-width: 7px;
+}
+
+span#form-validity {
+    color: red;
+}
+
