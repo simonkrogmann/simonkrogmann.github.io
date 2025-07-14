@@ -113,6 +113,7 @@ nav {
 
 main {
     margin-top: 120px;
+    margin-bottom: 70px;
 }
 
 @media screen and (max-width: 620px) {
@@ -138,16 +139,17 @@ main {
 
 div#me {
     display:flex;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 div#box-right {
     margin-left: 30px;
-    margin-top: 10px;
+/*    margin-top: 10px;*/
 }
 
 img#pic {
-    width: min(max(100px, 40vw), 280px);
+    width: min(max(100px, 38vw), 266px);
+    border-radius: 10px;
 }
 
 div.email > span:nth-child(2),span:nth-child(3) {
