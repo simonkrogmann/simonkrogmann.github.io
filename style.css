@@ -106,7 +106,7 @@ div#tag, nav {
 }
 
 nav {
-    margin-top: 20px;
+    margin-top: 23px;
     font-size: 18px;
     float: right;
 }
@@ -150,12 +150,18 @@ img#pic {
     width: min(max(100px, 40vw), 280px);
 }
 
-div.email > span:nth-child(2) {
+div.email > span:nth-child(2),span:nth-child(3) {
     display: none;
 }
 
-div.email > span:nth-child(3) {
-    display: none;
+div.email {
+    margin-bottom: 20px;
+}
+
+
+
+a.logo + a.logo{
+    margin: 15px;
 }
 
 
@@ -191,7 +197,7 @@ div.paper > a {
 }
 
 div.paper > a + a {
-    margin-left: 15px;
+    margin-left: 20px;
 }
 
 div.paper > p {

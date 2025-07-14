@@ -42,16 +42,30 @@ def build_authors(entry):
 
 def create_html(bib_database):
     for entry in bib_database.entries:
-        url = extract_url(entry)
-        venue = extract_venue(entry)
-        authors = build_authors(entry)
+        entry["url"] = extract_url(entry)
+        entry["venue"] = extract_venue(entry) + " " + entry["year"]
+        entry["authors"] = build_authors(entry)
+
+    skip = []
+
+    for i, entry in enumerate(bib_database.entries):
+        if i in skip:
+            continue
         title = entry['title']
-        if url:
-            title = f'<a href="{url}">{title}</a>'
+        if entry["url"]:
+            title = f'<a href="{entry["url"]}">{title}</a>'
+
+        venue = entry["venue"]
+        if i + 1 < len(bib_database.entries):
+            next_entry = bib_database.entries[i+1]
+            if next_entry["title"] == entry["title"]:
+                skip.append(i+1)
+                venue += ", " + next_entry["venue"]
 
         links = f'<a href="bib/{entry["ID"]}.bib">cite</a>'
         if 'arxiv' in entry:
             links += f'<a href="{entry["arxiv"]}">arxiv</a>'
+        # print(f"poster/{entry["ID"]}.pdf")
         if Path(f'poster/{entry["ID"]}.pdf').exists():
             links += f'<a href="poster/{entry["ID"]}.pdf">poster</a>'
         if 'code' in entry:
@@ -62,8 +76,8 @@ def create_html(bib_database):
         print(f"""\
     <div class="paper">
         <p class="title">{title}</a></p>
-        <p class="authors">{authors}</p>
-        <p class="conf">{venue} {entry["year"]}</p>
+        <p class="authors">{entry["authors"]}</p>
+        <p class="conf">{venue}</p>
         {links}
     </div>""")
 
