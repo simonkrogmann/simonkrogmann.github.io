@@ -57,7 +57,9 @@ def create_html(bib_database):
         IDS.append(entry["ID"])
         title = entry['title']
         if entry["url"]:
-            title = f'<a href="{entry["url"]}">{title}</a>'
+            title = f'<a class="title" href="{entry["url"]}">{title}</a>'
+        else:
+            title = f'<p class="title">{title}</p>'
 
         venue = entry["venue"]
         if i + 1 < len(bib_database.entries):
@@ -79,7 +81,7 @@ def create_html(bib_database):
 
         print(f"""\
     <a id="{entry["ID"]}"></a><div class="paper">
-        <p class="title">{title}</p>
+        {title}
         <p class="authors">{entry["authors"]}</p>
         <p class="conf">{venue}</p>
         {links}

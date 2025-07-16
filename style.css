@@ -7,7 +7,7 @@
     --highlight-color:#127F25;
     --bg-color: #ffffff;
     --bg-color2: 256, 256, 256;
-    --bg-highlight--color: #eee;
+    --bg-highlight-color: #eee;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,7 +18,7 @@
         --highlight-color:#1DC539;
         --bg-color: #333;
         --bg-color2: 48, 48, 48;
-        --bg-highlight--color: #444;
+        --bg-highlight-color: #444;
     }
 }
 
@@ -52,9 +52,10 @@ main a:hover {
     text-decoration: underline;
 }
 
-table a, div#me a {
+main a {
     color: var(--highlight-color);
 }
+
 
 
 
@@ -64,7 +65,7 @@ table a, div#me a {
 
 header {
     background: rgba(var(--bg-color2), 0.5);
-    position: fixed; /* Set the navbar to fixed position */
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
@@ -75,8 +76,12 @@ header {
 div#header {
     max-width: min(700px, calc(100vw - 20px));
     margin:0px auto;
+    display: flex;
 }
 
+div#tag {
+    flex: 1
+}
 
 div#name {
     margin-top: 5px;
@@ -93,14 +98,12 @@ nav > a + a {
 }
 
 div#tag, nav {
-    display: inline-block;
     margin-bottom: 12px;
 }
 
 nav {
     margin-top: 23px;
     font-size: 18px;
-    float: right;
 }
 
 main {
@@ -110,31 +113,19 @@ main {
 
 @media screen and (max-width: 620px) {
     div#header {
+        display: block;
         width: 100%;
     }
-    div#tag {
-        width: 100%;
-        float: none;
-        justify-content: center;
-        align-items: center;
-    }
+
     div#name, div#desc {
         text-align: center;
     }
+
     nav {
-        margin-left: 0px;
-        margin-right: 0px;
         margin-top: 0px;
         width: 100%;
-        float: none;
-        display: flex; justify-content: center;
-    }
-    nav > a {
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-    nav > a + a {
-        margin-left: 20px;
+        display: flex;
+        justify-content: center;
     }
 
     main {
@@ -143,7 +134,7 @@ main {
     }
 }
 
-a#intro, a#publications, a#bio, #sagt-25, #aamas-25, #ijcai-24, #stoc-23, #ijcai-23, #aaai-23, #aamas-23, #icalp-23, #wads-23, #alenex-23, #ijcai-21, #aic-19, #esa-16 {
+#intro, #publications, #bio, #sagt-25, #aamas-25, #ijcai-24, #stoc-23, #ijcai-23, #aaai-23, #aamas-23, #icalp-23, #wads-23, #alenex-23, #ijcai-21, #aic-19, #esa-16 {
     content: '';
     display: block;
     height: 130px;
@@ -159,9 +150,7 @@ a#intro, a#publications, a#bio, #sagt-25, #aamas-25, #ijcai-24, #stoc-23, #ijcai
 /*           me                */
 
 div#me {
-/*    display:flex;*/
     margin-bottom: 30px;
-
 }
 
 img#pic {
@@ -175,7 +164,7 @@ img#pic {
 
 div.group {
     display: inline-block;
-    max-width: min(calc(62vw - 51px),404px);
+    max-width: min(calc(62vw - 50px),404px);
 }
 
 div.group > * {
@@ -198,9 +187,7 @@ ul {
     div.group {
         display: block;
         max-width: none;
-
     }
-
 }
 
 p#long-desc {
@@ -213,7 +200,6 @@ div.email > span:nth-child(2),span:nth-child(3) {
 
 div.email {
     margin-bottom: 20px;
-    min-width: min(calc(100vw - 10px), 300px);
 }
 
 
@@ -237,7 +223,8 @@ div.paper {
     font-size: 14px;
 }
 
-div.paper > p.title {
+div.paper > .title {
+    color: var(--main-color);
     font-weight: bold;
     font-size: 18px;
 }
@@ -252,18 +239,13 @@ div.paper, p#pubdesc {
 }
 
 a:target + div.paper {
-/*    outline:5px var(--bg-highlight--color) solid;*/
-   background: var(--bg-highlight--color);
+   background: var(--bg-highlight-color);
    border-radius: 10px;
    padding: 10px 20px;
-   margin-top: -20px;
+   margin-top: -10px;
    margin-left: -20px;
    margin-right: -20px;
    margin-bottom: 20px;
-}
-
-div.paper > a {
-    color: var(--highlight-color);
 }
 
 div.paper > a + a {
@@ -271,24 +253,22 @@ div.paper > a + a {
 }
 
 div.paper > p {
-    line-height: 1;
-    margin-bottom: 6px;
-    margin-top: 6px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 
 
 
+
+
+/*           bio                */
 
 td.dates {
     text-align: right;
     vertical-align: top;
     width:0.1%;
     white-space: nowrap;
-    background-clip: padding-box;
-}
-
-td.dates {
     color: var(--subtle-color);
     padding-right: 5px;
 }
