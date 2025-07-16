@@ -1,12 +1,14 @@
 /*           colors                */
 
 :root {
+    color-scheme: light dark;
+
     --main-color:#333;
     --subtle-color:#888;
     --very-subtle-color:#ddd;
     --highlight-color:#127F25;
-    --bg-color: #ffffff;
-    --bg-color2: 256, 256, 256;
+    --bg-color: #fff;
+    --bg-color2: 255 255 255;
     --bg-highlight-color: #eee;
 }
 
@@ -17,7 +19,7 @@
         --very-subtle-color:#555;
         --highlight-color:#1DC539;
         --bg-color: #333;
-        --bg-color2: 48, 48, 48;
+        --bg-color2: 48 48 48;
         --bg-highlight-color: #444;
     }
 }
@@ -29,13 +31,18 @@
 /*           general                */
 
 h1,h2,h3 {
+    margin-top: 0;
     margin-bottom: 15px;
+}
+
+section {
+    margin-bottom: 50px;
 }
 
 body {
     background: var(--bg-color);
     color: var(--main-color);
-    margin:0px auto;
+    margin: 0 auto;
     max-width: 700px;
     line-height: 1.2;
     font-size: 16px;
@@ -48,15 +55,21 @@ a {
     text-decoration: inherit;
 }
 
-main a:hover {
-    text-decoration: underline;
-}
-
 main a {
     color: var(--highlight-color);
 }
 
+main a:hover {
+    text-decoration: underline;
+}
 
+:target::before {
+    content: '';
+    display: block;
+    height: 130px;
+    margin-top: -130px;
+    visibility: hidden;
+}
 
 
 
@@ -64,7 +77,7 @@ main a {
 /*           header                */
 
 header {
-    background: rgba(var(--bg-color2), 0.5);
+    background: rgb(var(--bg-color2) / 50%);
     position: fixed;
     width: 100%;
     top: 0;
@@ -75,7 +88,7 @@ header {
 
 div#header {
     max-width: min(700px, calc(100vw - 20px));
-    margin:0px auto;
+    margin: 0 auto;
     display: flex;
 }
 
@@ -111,7 +124,7 @@ main {
     margin-bottom: 70px;
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (width <= 620px) {
     div#header {
         display: block;
         width: 100%;
@@ -122,7 +135,7 @@ main {
     }
 
     nav {
-        margin-top: 0px;
+        margin-top: 0;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -134,14 +147,6 @@ main {
     }
 }
 
-#intro, #publications, #bio, #sagt-25, #aamas-25, #ijcai-24, #stoc-23, #ijcai-23, #aaai-23, #aamas-23, #icalp-23, #wads-23, #alenex-23, #ijcai-21, #aic-19, #esa-16 {
-    content: '';
-    display: block;
-    height: 130px;
-    margin-top: -130px;
-    visibility: hidden;
-}
-
 
 
 
@@ -149,13 +154,8 @@ main {
 
 /*           me                */
 
-div#me {
-    margin-bottom: 30px;
-}
-
 img#pic {
     float:left;
-
     margin-right: 30px;
     margin-bottom: 15px;
     width: min(max(50px, 38vw), 266px);
@@ -168,7 +168,7 @@ div.group {
 }
 
 div.group > * {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 ul {
@@ -176,11 +176,11 @@ ul {
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (width <= 600px) {
     img#pic {
         float:right;
         margin-left: 30px;
-        margin-right: 0px;
+        margin-right: 0;
         margin-bottom: 20px;
     }
 
@@ -191,10 +191,10 @@ ul {
 }
 
 p#long-desc {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
-div.email > span:nth-child(2),span:nth-child(3) {
+div.email > span:nth-child(2), span:nth-child(3) {
     display: none;
 }
 
@@ -227,6 +227,7 @@ div.paper > .title {
     color: var(--main-color);
     font-weight: bold;
     font-size: 18px;
+    margin-top: 0;
 }
 
 
@@ -235,17 +236,14 @@ div.paper > p.conf {
 }
 
 div.paper, p#pubdesc {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 a:target + div.paper {
    background: var(--bg-highlight-color);
    border-radius: 10px;
    padding: 10px 20px;
-   margin-top: -10px;
-   margin-left: -20px;
-   margin-right: -20px;
-   margin-bottom: 20px;
+   margin: -10px -20px 30px -20px;
 }
 
 div.paper > a + a {
