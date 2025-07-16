@@ -71,7 +71,7 @@ header {
 }
 
 div#header {
-    max-width: 700px;
+    max-width: min(700px, calc(100vw - 20px));
     margin:0px auto;
 }
 
@@ -153,13 +153,56 @@ a#intro, a#publications, a#bio {
 
 
 
-
 /*           me                */
 
 div#me {
-    display:flex;
+/*    display:flex;*/
     margin-bottom: 30px;
+
 }
+
+img#pic {
+    float:left;
+
+    margin-right: 30px;
+    margin-bottom: 15px;
+    width: min(max(50px, 38vw), 266px);
+    border-radius: 10px;
+}
+
+div.group {
+    display: inline-block;
+    max-width: min(calc(62vw - 51px),404px);
+}
+
+ul {
+/*    list-style-position: inside;*/
+    padding-left: 20px;
+    margin-top: 0px;
+}
+
+
+@media screen and (max-width: 600px) {
+    img#pic {
+        float:right;
+        margin-left: 30px;
+        margin-right: 0px;
+        margin-bottom: 20px;
+    }
+
+    div.group {
+        display: block;
+        max-width: none;
+
+    }
+
+    li {
+/*        list-style-position: inside;*/
+/*         overflow:hidden;*/
+    }
+
+}
+
 
 div#box-right {
     margin-left: 30px;
@@ -169,17 +212,13 @@ p#long-desc {
     margin-top: 0px;
 }
 
-img#pic {
-    width: min(max(100px, 38vw), 266px);
-    border-radius: 10px;
-}
-
 div.email > span:nth-child(2),span:nth-child(3) {
     display: none;
 }
 
 div.email {
     margin-bottom: 20px;
+    min-width: min(calc(100vw - 10px), 300px);
 }
 
 
@@ -190,10 +229,6 @@ a.logo + a.logo{
 
 a.logo + a.logo + a.logo{
     margin-left: 21px;
-}
-
-ul {
-    padding-left: 20px;
 }
 
 
