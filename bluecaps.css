@@ -43,7 +43,7 @@ td {
     width:0.1%;
     white-space: nowrap;
     background-clip: padding-box;
-    border: 0px solid transparent;
+    border: 0 solid transparent;
 }
 
 td.expand {
@@ -51,7 +51,6 @@ td.expand {
 }
 
 input.date {
-/*    width: 115px;*/
     box-sizing: border-box;
 }
 

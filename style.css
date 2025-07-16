@@ -96,7 +96,7 @@ div#tag {
     flex: 1
 }
 
-div#name {
+a#name {
     margin-top: 5px;
     font-size: 35px;
 }
@@ -125,12 +125,12 @@ main {
 }
 
 @media screen and (width <= 620px) {
-    div#header {
+    div#header, a#name {
         display: block;
         width: 100%;
     }
 
-    div#name, div#desc {
+    a#name, div#desc {
         text-align: center;
     }
 
