@@ -7,6 +7,7 @@
     --highlight-color:#127F25;
     --bg-color: #ffffff;
     --bg-color2: 256, 256, 256;
+    --bg-highlight--color: #eee;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,6 +18,7 @@
         --highlight-color:#1DC539;
         --bg-color: #333;
         --bg-color2: 48, 48, 48;
+        --bg-highlight--color: #444;
     }
 }
 
@@ -50,7 +52,7 @@ main a:hover {
     text-decoration: underline;
 }
 
-table a {
+table a, div#me a {
     color: var(--highlight-color);
 }
 
@@ -141,13 +143,14 @@ main {
     }
 }
 
-a#intro, a#publications, a#bio {
-  content: '';
-  display: block;
-  height: 130px;
-  margin-top: -130px;
-  visibility: hidden;
+a#intro, a#publications, a#bio, #sagt-25, #aamas-25, #ijcai-24, #stoc-23, #ijcai-23, #aaai-23, #aamas-23, #icalp-23, #wads-23, #alenex-23, #ijcai-21, #aic-19, #esa-16 {
+    content: '';
+    display: block;
+    height: 130px;
+    margin-top: -130px;
+    visibility: hidden;
 }
+
 
 
 
@@ -175,10 +178,12 @@ div.group {
     max-width: min(calc(62vw - 51px),404px);
 }
 
-ul {
-/*    list-style-position: inside;*/
-    padding-left: 20px;
+div.group > * {
     margin-top: 0px;
+}
+
+ul {
+    padding-left: 20px;
 }
 
 
@@ -196,16 +201,6 @@ ul {
 
     }
 
-    li {
-/*        list-style-position: inside;*/
-/*         overflow:hidden;*/
-    }
-
-}
-
-
-div#box-right {
-    margin-left: 30px;
 }
 
 p#long-desc {
@@ -237,29 +232,37 @@ a.logo + a.logo + a.logo{
 
 /*           publications                */
 
+div.paper {
+    width: fit-content;
+    font-size: 14px;
+}
+
 div.paper > p.title {
     font-weight: bold;
     font-size: 18px;
 }
 
-div.paper > p.authors {
-    font-size: 14px;
-}
 
 div.paper > p.conf {
     color: var(--subtle-color);
-    font-size: 14px;
 }
 
 div.paper, p#pubdesc {
     margin-bottom: 30px;
 }
 
+a:target + div.paper {
+/*    outline:5px var(--bg-highlight--color) solid;*/
+   background: var(--bg-highlight--color);
+   border-radius: 10px;
+   padding: 10px 20px;
+   margin-top: -20px;
+   margin-left: -20px;
+   margin-right: -20px;
+   margin-bottom: 20px;
+}
 
 div.paper > a {
-    /*outline: 1px var(--highlight-color) solid;
-    padding: 2px 4px;*/
-    font-size: 14px;
     color: var(--highlight-color);
 }
 
@@ -269,8 +272,8 @@ div.paper > a + a {
 
 div.paper > p {
     line-height: 1;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 6px;
+    margin-top: 6px;
 }
 
 

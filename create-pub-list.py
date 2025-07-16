@@ -3,6 +3,8 @@ import bibtexparser
 from bibtexparser.middlewares import SeparateCoAuthors, SplitNameParts
 
 
+IDS = []
+
 def parse(advanced=False):
     # parser.customization = getnames
     with open('mine.bib', 'r') as bibtex_file:
@@ -41,6 +43,7 @@ def build_authors(entry):
 
 
 def create_html(bib_database):
+    global iDS
     for entry in bib_database.entries:
         entry["url"] = extract_url(entry)
         entry["venue"] = extract_venue(entry) + " " + entry["year"]
@@ -51,6 +54,7 @@ def create_html(bib_database):
     for i, entry in enumerate(bib_database.entries):
         if i in skip:
             continue
+        IDS.append(entry["ID"])
         title = entry['title']
         if entry["url"]:
             title = f'<a href="{entry["url"]}">{title}</a>'
@@ -74,7 +78,7 @@ def create_html(bib_database):
             links += f'<a href="{entry["data"]}">data</a>'
 
         print(f"""\
-    <div class="paper">
+    <a id="{entry["ID"]}"></a><div class="paper">
         <p class="title">{title}</p>
         <p class="authors">{entry["authors"]}</p>
         <p class="conf">{venue}</p>
@@ -94,10 +98,13 @@ def create_bib_files(bib_database):
 
 
 def main():
+    global IDS
     advanced_database = parse(True)
     create_html(advanced_database)
     database = parse()
     create_bib_files(database)
+    IDS = ['#' + x for x in IDS]
+    print("\n\nIDs:", ", ".join(IDS))
 
 
 if __name__ == '__main__':
