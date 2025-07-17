@@ -63,7 +63,7 @@ main a:hover {
     text-decoration: underline;
 }
 
-:target::before {
+:target {
     content: '';
     display: block;
     height: 130px;
@@ -190,10 +190,6 @@ ul {
     }
 }
 
-p#long-desc {
-    margin-top: 0;
-}
-
 div.email > span:nth-child(2), span:nth-child(3) {
     display: none;
 }
@@ -223,6 +219,12 @@ div.paper {
     font-size: 14px;
 }
 
+p#pubdesc, div.paper {
+    margin-bottom: 40px;
+}
+
+
+
 div.paper > .title {
     color: var(--main-color);
     font-weight: bold;
@@ -233,10 +235,6 @@ div.paper > .title {
 
 div.paper > p.conf {
     color: var(--subtle-color);
-}
-
-div.paper, p#pubdesc {
-    margin-bottom: 40px;
 }
 
 a:target + div.paper {
