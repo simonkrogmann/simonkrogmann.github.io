@@ -81,8 +81,8 @@ def create_html(bib_database):
         img = f'<svg></svg>'
         if Path(f'../paper-icon/{entry["ID"]}.svg').exists():
             img = f'<svg><use href="paper-icon/{entry["ID"]}.svg#img"></use></svg>'
-        elif Path(f'../paper-icon/{entry["ID"]}.png').exists():
-            img = f'<img src="paper-icon/{entry["ID"]}.png">'
+        elif Path(f'../paper-icon/{entry["ID"]}.webp').exists():
+            img = f'<img src="paper-icon/{entry["ID"]}.webp">'
 
 
         print(f"""\
