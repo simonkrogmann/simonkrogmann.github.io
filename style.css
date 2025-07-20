@@ -233,13 +233,14 @@ div.paper > svg, div.paper > img {
     height: 84px;
 /*    outline: 1px solid black;*/
     margin-right: 20px;
+    object-fit: cover;
 }
 
 
 div.paper-text > .title {
     color: var(--main-color);
     font-weight: bold;
-    font-size: 18px;
+    font-size: 17.5px;
     margin-top: 0;
 }
 
