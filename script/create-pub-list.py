@@ -81,11 +81,12 @@ def create_html(bib_database):
 
         print(f"""\
     <a id="{entry["ID"]}"></a><div class="paper">
+        <svg><use href="paper-icon/{entry["ID"]}.svg#img"></use></svg><div class="paper-text">
         {title}
         <p class="authors">{entry["authors"]}</p>
         <p class="conf">{venue}</p>
         {links}
-    </div>""")
+    </div></div>""")
 
 
 def create_bib_files(bib_database):
@@ -95,7 +96,7 @@ def create_bib_files(bib_database):
             if tag in entry:
                 del entry[tag]
         single_entry_db = bibtexparser.Library([entry])
-        with open(f'bib/{entry["ID"]}.bib', 'w') as write_file:
+        with open(f'../bib/{entry["ID"]}.bib', 'w') as write_file:
             write_file.write(bibtexparser.write_string(single_entry_db))
 
 

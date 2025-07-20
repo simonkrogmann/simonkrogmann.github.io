@@ -217,23 +217,33 @@ a.logo + a.logo + a.logo{
 div.paper {
     width: fit-content;
     font-size: 14px;
+    display: flex;
 }
 
 p#pubdesc, div.paper {
     margin-bottom: 40px;
 }
 
+div.paper-text {
+    flex: 1;
+}
+
+div.paper > svg, div.paper > img {
+    width: 84px;
+    height: 84px;
+/*    outline: 1px solid black;*/
+    margin-right: 20px;
+}
 
 
-div.paper > .title {
+div.paper-text > .title {
     color: var(--main-color);
     font-weight: bold;
     font-size: 18px;
     margin-top: 0;
 }
 
-
-div.paper > p.conf {
+div.paper-text > p.conf {
     color: var(--subtle-color);
 }
 
@@ -243,11 +253,11 @@ a:target + div.paper {
    box-shadow: 0 0 0 15px var(--bg-highlight-color);
 }
 
-div.paper > a + a {
+div.paper-text > a + a {
     margin-left: 20px;
 }
 
-div.paper > p {
+div.paper-text > p {
     margin-bottom: 5px;
     margin-top: 5px;
 }
