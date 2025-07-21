@@ -72,16 +72,16 @@ def create_html(bib_database):
         if 'arxiv' in entry:
             links += f'<a href="{entry["arxiv"]}">arxiv</a>'
         # print(f"poster/{entry["ID"]}.pdf")
-        if Path(f'../poster/{entry["ID"]}.pdf').exists():
+        if Path(f'docs/poster/{entry["ID"]}.pdf').exists():
             links += f'<a href="poster/{entry["ID"]}.pdf">poster</a>'
         if 'code' in entry:
             links += f'<a href="{entry["code"]}">code</a>'
         if 'data' in entry:
             links += f'<a href="{entry["data"]}">data</a>'
         img = f'<svg></svg>'
-        if Path(f'../paper-icon/{entry["ID"]}.svg').exists():
+        if Path(f'docs/paper-icon/{entry["ID"]}.svg').exists():
             img = f'<svg><use href="paper-icon/{entry["ID"]}.svg#img"></use></svg>'
-        elif Path(f'../paper-icon/{entry["ID"]}.webp').exists():
+        elif Path(f'docs/paper-icon/{entry["ID"]}.webp').exists():
             img = f'<img src="paper-icon/{entry["ID"]}.webp">'
 
 
@@ -96,13 +96,13 @@ def create_html(bib_database):
 
 
 def create_bib_files(bib_database):
-    Path("../bib").mkdir(parents=True, exist_ok=True)
+    Path("docs/bib").mkdir(parents=True, exist_ok=True)
     for entry in bib_database.entries:
         for tag in ['code', 'data', 'arxiv']:
             if tag in entry:
                 del entry[tag]
         single_entry_db = bibtexparser.Library([entry])
-        with open(f'../bib/{entry["ID"]}.bib', 'w') as write_file:
+        with open(f'docs/bib/{entry["ID"]}.bib', 'w') as write_file:
             write_file.write(bibtexparser.write_string(single_entry_db))
 
 

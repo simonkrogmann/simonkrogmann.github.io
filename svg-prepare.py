@@ -11,7 +11,7 @@ def add_id(content):
     
 
 def main():
-    for p in Path("../paper-icon").glob("*.svg"):
+    for p in Path("docs/paper-icon").glob("*.svg"):
         with open(p, "r") as f:
             content = f.read()
         content = change_colors(content)
