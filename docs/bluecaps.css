@@ -11,10 +11,6 @@ input#city-sign {
     width: 150px;
 }
 
-span#dateplace {
-    white-space: nowrap;
-}
-
 input {
     margin-bottom: 10px;
     border: 1px solid;
@@ -85,7 +81,7 @@ span#form-validity, span#validity {
     margin-left: 10px;
 }
 
-h3 {
+h1, h2, h3 {
     margin-top: 25px;
 }
 
