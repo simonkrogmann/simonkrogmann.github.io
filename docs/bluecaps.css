@@ -80,7 +80,7 @@ tr > td + td {
   border-left-width: 7px;
 }
 
-span#form-validity {
+span#form-validity, span#validity {
     color: red;
     margin-left: 10px;
 }

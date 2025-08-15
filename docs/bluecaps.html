@@ -20,11 +20,11 @@
 
     <form id="form">
         <h3>Persönliche Daten</h3>
-        <div class="form-side">
+        <div>
             <label for="fname">Vorname</label>
             <input class="regular" type="text" id="fname" autocomplete="given-name" placeholder="Vorname">
         </div>
-        <div class="form-side">
+        <div>
             <label for="lname">Nachname</label>
             <input class="regular" type="text" id="lname" autocomplete="family-name" placeholder="Nachname">
         </div>
@@ -42,23 +42,21 @@
         </div>
         <br>
 
-        <div class="form-side">
+        <div>
             <label for="plz">Postleitzahl</label>
             <input class="regular" type="text" id="plz" autocomplete="postal-code" placeholder="PLZ">
         </div>
-        <div class="form-side">
+        <div>
             <label for="city">Stadt</label>
             <input class="regular" type="text" id="city" autocomplete="address-level2" placeholder="Stadt">
         </div>
         <br>
 
-        <div class="form-side">
+        <div>
             <label for="iban">IBAN</label>
             <input class="regular" type="text" id="iban" placeholder="IBAN">
         </div>
-        <div class="form-side">
-            <span id="validity"></span>
-        </div>
+        <span id="validity"></span>
 
         <h3>Auslagen</h3>
         <table>
@@ -80,12 +78,8 @@
 
 
         <h3>Unterschrift</h3>
-        <div>
-            <label for="iban">mit Maus/Finger/Stift</label>
-        </div>
-        <div>
-            <button type="button" id="clear">Löschen</button>
-        </div>
+        <span for="iban">mit Maus/Finger/Stift</span>&nbsp;&nbsp;
+        <button type="button" id="clear">Löschen</button>
         <br>
 
         <canvas id="signature"></canvas>
