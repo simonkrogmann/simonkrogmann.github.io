@@ -335,7 +335,7 @@ function writeData(page, image)
 
 async function pdfCreate()
 {
-    const existingPDF = await fetch("https://simonkrogmann.github.io/antrag.b64").then(res => res.text());
+    const existingPDF = await fetch("antrag.b64").then(res => res.text());
     const pdfDoc = await PDFLib.PDFDocument.load(existingPDF);
     const pages = pdfDoc.getPages();
     const page = pages[0];
