@@ -185,7 +185,8 @@ function addCanvasStuff() {
         var touch = e.touches[0];
         var me = new MouseEvent("mousemove", {
             clientX: touch.clientX,
-            clientY: touch.clientY
+            clientY: touch.clientY,
+            buttons: 1
         });
         canvas.dispatchEvent(me);
     }, false);
@@ -194,7 +195,8 @@ function addCanvasStuff() {
         var touch = e.touches[0];
         var me = new MouseEvent("mousedown", {
             clientX: touch.clientX,
-            clientY: touch.clientY
+            clientY: touch.clientY,
+            buttons: 1
         });
         canvas.dispatchEvent(me);
     }, false);
