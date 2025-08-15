@@ -28,14 +28,20 @@
             <label for="lname">Nachname</label>
             <input class="regular" type="text" id="lname" autocomplete="family-name" placeholder="Nachname">
         </div>
+        <br>
+
         <div>
             <label for="email">E-Mail</label>
             <input class="regular" type="email" id="email" autocomplete="email" placeholder="E-Mail">
         </div>
+        <br>
+
         <div>
             <label for="address">Straße und Hausnummer</label>
             <input class="regular" type="text" id="address" autocomplete="street-address" placeholder="Adresse">
         </div>
+        <br>
+
         <div class="form-side">
             <label for="plz">Postleitzahl</label>
             <input class="regular" type="text" id="plz" autocomplete="postal-code" placeholder="PLZ">
@@ -44,7 +50,9 @@
             <label for="city">Stadt</label>
             <input class="regular" type="text" id="city" autocomplete="address-level2" placeholder="Stadt">
         </div>
-        <div>
+        <br>
+
+        <div class="form-side">
             <label for="iban">IBAN</label>
             <input class="regular" type="text" id="iban" placeholder="IBAN">
         </div>
@@ -72,26 +80,22 @@
 
 
         <h3>Unterschrift</h3>
-        <div class="form-side">
+        <div>
             <label for="iban">mit Maus/Finger/Stift</label>
         </div>
-        <div class="form-side">
+        <div>
             <button type="button" id="clear">Löschen</button>
         </div>
-        <div>
-            <canvas id="signature"></canvas>
-        </div>
-        <div class="form-side">
-            <input type="text" id="city-sign" autocomplete="address-level2" placeholder="Stadt">
-        </div>
-        <div class="form-side">, den</div>
-        <div class="form-side" id="date"></div>
-        <div >
-            <button id="submit" type="button">Antrag als PDF herunterladen</button>
-        </div>
-        <div class="form-side">
-            <span id="form-validity"></span>
-        </div>
+        <br>
+
+        <canvas id="signature"></canvas>
+        <br>
+
+        <input type="text" id="city-sign" autocomplete="address-level2" placeholder="Stadt">, den <span id="date"></span>
+        <br>
+
+        <button id="submit" type="button">Antrag als PDF herunterladen</button>
+        <span id="form-validity"></span>
     </form>
     <p>
         Überprüfe die generierte PDF-Datei und schicke sie dann per Mail oder Signal an die Kassenwärtin. Ausdrucken ist nicht notwendig.

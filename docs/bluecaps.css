@@ -2,13 +2,12 @@ input.regular {
     width: 200px;
 }
 
-input.regular, label, button#clear {
+input.regular, label {
     display: block;
     white-space: nowrap;
 }
 
 input#city-sign {
-    display: inline;
     width: 150px;
 }
 
@@ -27,8 +26,11 @@ input {
 
 }
 
-div.form-side {
+form > div {
     display: inline-block;
+}
+form > div + div {
+    margin-left: 10px;
 }
 
 canvas#signature {
@@ -80,5 +82,10 @@ tr > td + td {
 
 span#form-validity {
     color: red;
+    margin-left: 10px;
+}
+
+h3 {
+    margin-top: 25px;
 }
 
