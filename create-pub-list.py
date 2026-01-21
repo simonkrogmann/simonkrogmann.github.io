@@ -61,14 +61,16 @@ def create_html(bib_database):
         else:
             title = f'<p class="title">{title}</p>'
 
+        links = f'<a href="bib/{entry["ID"]}.bib">cite</a>'
+
         venue = entry["venue"]
         if i + 1 < len(bib_database.entries):
             next_entry = bib_database.entries[i+1]
             if next_entry["title"] == entry["title"]:
                 skip.append(i+1)
                 venue += ", " + next_entry["venue"]
+                links += f'<a href="bib/{next_entry["ID"]}.bib">cite (journal)</a>'
 
-        links = f'<a href="bib/{entry["ID"]}.bib">cite</a>'
         if 'arxiv' in entry:
             links += f'<a href="{entry["arxiv"]}">arxiv</a>'
         # print(f"poster/{entry["ID"]}.pdf")
